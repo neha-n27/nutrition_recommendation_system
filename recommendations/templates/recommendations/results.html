@@ -1,0 +1,160 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Recommendations</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        /* Reset default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #bcd6f0;
+            color: #333;
+            
+        }
+
+        /* Page header styling */
+        h1 {
+            text-align: center;
+            font-size: 60px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            color: #007bff; /* Blue header */
+        }
+
+        /* Container for recipes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Adjusted to space between items */
+        }
+
+        /* Recipe card styling */
+        .recipe {
+            width: calc(30.33% - 20px); /* Adjusted to 33.33% width */
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            /* Gradient background */
+            background-image: linear-gradient(135deg, #f4c9d3, #8cf1cc);
+        }
+
+        .recipe:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Recipe title styling */
+        .recipe h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+            font-weight: bolder;
+
+        }
+
+        /* Recipe image styling */
+        .recipe img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Recipe details styling */
+        .recipe p {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #1b1a1a;
+            font-weight: bolder;
+        }
+
+        /* Ingredients list styling */
+        .recipe ul {
+            padding-left: 20px;
+            text-align: left; /* Align ingredients list to the left */
+            margin-bottom: 10px;
+            font-weight: bolder;
+            color: #1b1a1a;
+        }
+
+        .recipe ul li {
+            margin-bottom: 5px;
+            list-style-position: inside;
+            font-size: 16px;
+            color: #0f0e0e;
+            font-weight: bold;
+        }
+
+        /* View recipe link styling */
+        .recipe a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .recipe a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back button styling */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #1075ce;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            z-index: 1000; /* Ensure button appears above other content */
+        }
+
+        .back-button:hover {
+            background-color: #37e763;
+        }
+    </style>
+</head>
+<body>
+    <a class="back-button" href="/recommendations/recommendations">Back </a>
+    <h1>Recipe Recommendations</h1>
+    <div class="container">
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <div class="recipe">
+                    <h2>{{ recipe.label }}</h2>
+                    {% if recipe.image %}
+                        <img src="{{ recipe.image }}" alt="{{ recipe.label }}">
+                    {% endif %}
+                    <p>Energy in kcal: {{ recipe.calories_per_serving|floatformat:2 }}</p>
+                    <p>Ingredients:</p>
+                    <ul>
+                        {% for ingredient in recipe.ingredients %}
+                            <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p><a href="{{ recipe.url }}" target="_blank">View Recipe</a></p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="color:red;font-size: 100px;text-align: center;margin-left: 200px;">No recipes found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

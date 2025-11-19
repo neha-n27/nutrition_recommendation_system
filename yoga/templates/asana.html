@@ -1,0 +1,373 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Poses</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f6c7c7 0%, #9edfe9 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            /* Ensures content doesn't overflow */
+            margin-bottom: 20px;
+        }
+
+        .pose-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .pose-image {
+            width: 100%;
+            height: auto;
+            max-width: 500px; /* Set the desired max width */
+            max-height: 300px; /* Set the desired max height */
+
+            border-radius: 8px;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        .pose-benefits {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Hide all but the first pose initially */
+        .container:not(:first-of-type) {
+            display: none;
+        }
+
+        /* Next and Previous buttons */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-image: linear-gradient(to right, #4CAF50, #45a049);
+        }
+
+        .button-container button:hover {
+            background-image: linear-gradient(to right, #45a049, #4CAF50);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #ff6347;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-image: linear-gradient(to right, #ff6347, #e55347);
+        }
+
+        .back-button:hover {
+            background-image: linear-gradient(to right, #2eee57, #2add3f);
+        }
+
+    </style>
+</head>
+
+<body>
+    <button class="back-button" onclick="location.href='/yoga/yoga1';">Back</button>
+    <!-- Yoga Pose 1 -->
+    <div class="container" id="pose1">
+        <div class="pose-title">Tadasana (Mountain Pose)</div>
+        <img src="{% static 'images/tad1.jpeg' %}" alt="Tadasana" class="pose-image">
+        <div class="pose-benefits">
+            Tadasana strengthens thighs, knees, and ankles. It firms the abdomen and buttocks, improves posture, and
+            reduces flat feet.
+        </div>
+        <div class="button-container">
+            <button onclick="showNextPose()">Next Pose</button>
+        </div>
+    </div>
+
+    <!-- Yoga Pose 2 -->
+    <div class="container" id="pose2">
+        <div class="pose-title">Bhujangasana (Cobra Pose)</div>
+        <img src="{% static 'images/bhuj.webp' %}"alt="Bhujangasana" class="pose-image">
+        <div class="pose-benefits">
+            Bhujangasana helps to open up the shoulders and neck, strengthens the entire back and shoulders, improves
+            flexibility of the upper and middle back, and invigorates the heart.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 3 -->
+    <div class="container" id="pose3">
+        <div class="pose-title">Adho Mukha Svanasana (Downward-Facing Dog Pose)</div>
+        <img src="{% static 'images/ams.png' %}" alt="Adho Mukha Svanasana" class="pose-image">
+        <div class="pose-benefits">
+            Adho Mukha Svanasana stretches the shoulders, hamstrings, calves, arches, and hands. It strengthens the arms
+            and legs, improves digestion, relieves headache, insomnia, back pain, and fatigue.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 4 -->
+    <div class="container" id="pose4">
+        <div class="pose-title">Virabhadrasana I (Warrior Pose I)</div>
+        <img src="{% static 'images/w1.webp' %}" alt="Virabhadrasana I" class="pose-image">
+        <div class="pose-benefits">
+            Virabhadrasana I strengthens the legs, opens the hips and chest, and stretches the arms and legs. It
+            improves
+            focus, balance, and stability.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 5 -->
+    <div class="container" id="pose5">
+        <div class="pose-title">Virabhadrasana II (Warrior Pose II)</div>
+        <img src="{% static 'images/w2.jpg' %}"  alt="Virabhadrasana II" class="pose-image">
+        <div class="pose-benefits">
+            Virabhadrasana II strengthens the legs, stretches the groins, chest, and lungs, and increases stamina. It
+            relieves backaches, stimulates abdominal organs, and improves circulation and respiration.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 6 -->
+    <div class="container" id="pose6">
+        <div class="pose-title">Balasana (Child's Pose)</div>
+        <img src="{% static 'images/bal.jpeg' %}"  alt="Balasana" class="pose-image">
+        <div class="pose-benefits">
+            Balasana gently stretches the hips, thighs, and ankles. It helps to calm the mind, relieve stress and
+            fatigue, and can alleviate back and neck pain when done with extended arms.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 7 -->
+    <div class="container" id="pose7">
+        <div class="pose-title">Vrikshasana (Tree Pose)</div>
+        <img src="{% static 'images/vrik.jpg' %}"  alt="Vrikshasana" class="pose-image">
+        <div class="pose-benefits">
+            Vrikshasana strengthens the legs, opens the hips, and improves balance and stability. It calms the mind,
+            improves concentration, and strengthens ligaments and tendons of the feet.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 8 -->
+    <div class="container" id="pose8">
+        <div class="pose-title">Setu Bandhasana (Bridge Pose)</div>
+        <img src="{% static 'images/setu.jpg' %}"  alt="Setu Bandhasana" class="pose-image">
+        <div class="pose-benefits">
+            Setu Bandhasana stretches the chest, neck, and spine. It calms the brain and helps alleviate stress and mild
+            depression. It stimulates abdominal organs, lungs, and thyroid glands.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 9 -->
+    <div class="container" id="pose9">
+        <div class="pose-title">Paschimottanasana (Seated Forward Bend)</div>
+        <img src="{% static 'images/pach.jpg' %}"  alt="Paschimottanasana" class="pose-image">
+        <div class="pose-benefits">
+            Paschimottanasana stretches the spine, shoulders, and hamstrings. It stimulates the liver, kidneys,
+            ovaries, and uterus. It improves digestion and relieves symptoms of menopause and menstrual discomfort.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 10 -->
+    <div class="container" id="pose10">
+        <div class="pose-title">Savasana (Corpse Pose)</div>
+        <img src="{% static 'images/sav.jpeg' %}"  alt="Savasana" class="pose-image">
+        <div class="pose-benefits">
+            Savasana relaxes the whole body, calms the mind, and reduces stress and fatigue. It improves concentration
+            and sleep quality.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 11 -->
+    <div class="container" id="pose11">
+        <div class="pose-title">Utkatasana (Chair Pose)</div>
+        <img src="{% static 'images/utk.jpg' %}"  alt="Utkatasana" class="pose-image">
+        <div class="pose-benefits">
+            Utkatasana strengthens the thighs, ankles, calves, and spine. It stretches the shoulders and chest. It
+            stimulates the heart, diaphragm, and abdominal organs. It reduces flat feet and stimulates the circulatory
+            system.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 12 -->
+    <div class="container" id="pose12">
+        <div class="pose-title">Ardha Matsyendrasana (Half Lord of the Fishes Pose)</div>
+        <img src="{% static 'images/arda.jpeg' %}" alt="Ardha Matsyendrasana" class="pose-image">
+        <div class="pose-benefits">
+            Ardha Matsyendrasana increases the flexibility of the spine, hips, and neck. It massages the abdominal
+            organs, improves digestion, and relieves menstrual discomfort.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 13 -->
+    <div class="container" id="pose13">
+        <div class="pose-title">Baddha Konasana (Bound Angle Pose)</div>
+        <img src="{% static 'images/bada1.jpg' %}"  alt="Baddha Konasana" class="pose-image">
+        <div class="pose-benefits">
+            Baddha Konasana stimulates abdominal organs, ovaries, prostate gland, bladder, and kidneys. It stretches the
+            inner thighs, groins, and knees. It improves flexibility in the groin and hip region and reduces
+            discomfort during menstruation and menopause.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+            
+        </div>
+    </div>
+
+    <!-- Yoga Pose 14 -->
+    <div class="container" id="pose14">
+        <div class="pose-title">Matsyasana (Fish Pose)</div>
+        <img src="{% static 'images/matsya.webp' %}"  alt="Matsyasana" class="pose-image">
+        <div class="pose-benefits">
+            Matsyasana stretches the deep hip flexors and intercostal muscles between the ribs. It stretches and
+            stimulates the muscles of the front of the neck and throat, the deep hip flexors, and the muscles between
+            the ribs. It stimulates the organs of the belly and throat.
+        </div>
+        <div class="button-container">
+            <button onclick="showPreviousPose()">Previous Pose</button>
+            <button onclick="showNextPose()">Next Pose</button>
+           
+        </div>
+    </div>
+
+    <!-- Yoga Pose 15 -->
+    <div class="container" id="pose15">
+        <div class="pose-title">Garudasana (Eagle Pose)</div>
+        <img src="{% static 'images/gar2.jpeg' %}" alt="Garudasana" class="pose-image">
+        <div class="pose-benefits">
+            Garudasana strengthens and stretches the ankles and calves. It stretches the thighs, hips, shoulders, and
+            upper back. It improves concentration, balance, and flexibility. It also stretches the muscles, tendons, and
+            ligaments of the legs and shoulders, and the hips, thighs, shoulders, and upper back.
+        </div>
+        <div class="button-container">
+            
+            <button onclick="showPreviousPose()">Previous Pose</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the next pose
+        function showNextPose() {
+            var currentPose = document.querySelector('.container:not([style*="display: none;"])');
+            var nextPose = currentPose.nextElementSibling;
+
+            if (nextPose) {
+                currentPose.style.display = 'none';
+                nextPose.style.display = 'block';
+            } else {
+                // If there's no next pose, stay on the current pose
+                alert('You have reached the last pose.');
+            }
+        }
+
+        // Function to show the previous pose
+        function showPreviousPose() {
+            var currentPose = document.querySelector('.container:not([style*="display: none;"])');
+            var previousPose = currentPose.previousElementSibling;
+
+            if (previousPose) {
+                currentPose.style.display = 'none';
+                previousPose.style.display = 'block';
+            } else {
+                // If there's no previous pose, stay on the current pose
+                alert('You are at the first pose.');
+            }
+        }
+
+    </script>
+</body>
+
+</html>

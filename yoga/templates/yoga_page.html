@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Options</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #bbd7f3, #84e9b0);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .options-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .yoga-option {
+            width: 160px;
+            height: 160px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .yoga-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon {
+            font-size: 3em;
+            color: #FF6347;
+            margin-bottom: 10px;
+        }
+
+        .label {
+            font-size: 1.2em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 10%;
+            width: 100px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #e5533c;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="location.href='/detaila/de';">Home</button>
+    <div class="container">
+        <h1>Choose One Option</h1>
+        <div class="options-container">
+            <a href="{% url 'surya_namaskar' %}">
+                <div class="yoga-option">
+                    <i class="fas fa-sun icon"></i>
+                    <div class="label">Surya Namaskar</div>
+                </div>
+            </a>
+            <a href="{% url 'asana' %}">
+                <div class="yoga-option">
+                    <i class="fas fa-person-booth icon"></i>
+                    <div class="label">Asana</div>
+                </div>
+            </a>
+            <a href="{% url 'meditation_page' %}">
+                <div class="yoga-option">
+                    <i class="fas fa-spa icon"></i>
+                    <div class="label">Meditation</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

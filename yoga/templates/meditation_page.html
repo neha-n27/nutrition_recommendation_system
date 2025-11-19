@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .tips,
+        .meditation-steps {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #FF6347;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1.2em;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        li:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.02);
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 14px 28px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        #step,
+        #timer {
+            font-size: 1.3em;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        select {
+            margin: 20px 0;
+            padding: 12px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Additional Styles */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/1600x900/?nature,meditation') no-repeat center center/cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #FF6347;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #FF4500;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="back-button" onclick="location.href='/yoga/yoga1';">Back</button>
+    <div class="container">
+        <h1>Meditation Guide</h1>
+        <div class="tips">
+            <h2>Tips and Benefits</h2>
+            <ul>
+                <li>Reduces stress</li>
+                <li>Controls anxiety</li>
+                <li>Promotes emotional health</li>
+                <li>Enhances self-awareness</li>
+                <li>Improves sleep</li>
+            </ul>
+        </div>
+        <div class="meditation-steps">
+            <h2>Meditation Steps</h2>
+            <select id="meditationType">
+                <option value="basic">Basic Meditation</option>
+                <option value="breathing">Breathing Exercise</option>
+                <option value="mindfulness">Mindfulness Meditation</option>
+            </select>
+            <button onclick="startMeditation()">Start Meditation</button>
+            <button onclick="pauseMeditation()">Pause/Play</button>
+            <p id="timer"></p>
+            <p id="step"></p>
+        </div>
+    </div>
+    <script>
+        const meditations = {
+            basic: [
+                "Sit comfortably and close your eyes.",
+                "Take a deep breath in and exhale slowly.",
+                "Focus on your breathing.",
+                "If your mind wanders, gently bring it back to your breath.",
+                "Continue this for 5-10 minutes."
+            ],
+            breathing: [
+                "Sit comfortably and close your eyes.",
+                "Take a deep breath in through your nose.",
+                "Hold your breath for a count of four.",
+                "Exhale slowly through your mouth.",
+                "Repeat this cycle for 5-10 minutes."
+            ],
+            mindfulness: [
+                "Sit comfortably and close your eyes.",
+                "Pay attention to your breathing.",
+                "Notice any sensations in your body.",
+                "Observe your thoughts without judgment.",
+                "Continue this awareness for 5-10 minutes."
+            ]
+        };
+
+        let stepIndex = 0;
+        let currentSteps = [];
+        let timer;
+        let paused = false;
+        let remainingTime = 0.2 * 60;
+        let utterance;
+        let currentText = "";
+        let currentCharIndex = 0;
+
+        function startMeditation() {
+            const meditationType = document.getElementById('meditationType').value;
+            currentSteps = meditations[meditationType];
+            stepIndex = 0;
+            paused = false;
+            nextStep();
+        }
+
+        function nextStep() {
+            if (stepIndex < currentSteps.length) {
+                currentText = currentSteps[stepIndex];
+                currentCharIndex = 0;
+                document.getElementById('step').innerText = currentText;
+                speak(currentText);
+                startTimer(0.2 * 60, nextStep);
+                stepIndex++;
+            } else {
+                document.getElementById('step').innerText = "Meditation complete.";
+                speak("Meditation complete.");
+            }
+        }
+
+        function startTimer(duration, callback) {
+            remainingTime = duration;
+            updateTimer();
+            if (!paused) {
+                timer = setInterval(() => {
+                    if (remainingTime > 0) {
+                        remainingTime--;
+                        updateTimer();
+                    } else {
+                        clearInterval(timer);
+                        callback();
+                    }
+                }, 1000);
+            }
+        }
+
+        function updateTimer() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            document.getElementById('timer').innerText = `Time remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        function pauseMeditation() {
+            paused = !paused;
+            if (paused) {
+                clearInterval(timer);
+                window.speechSynthesis.cancel();
+            } else {
+                speak(currentText.substring(currentCharIndex));
+                startTimer(remainingTime, nextStep);
+            }
+        }
+
+        function speak(text) {
+            if (utterance) {
+                window.speechSynthesis.cancel();
+            }
+            utterance = new SpeechSynthesisUtterance(text);
+            utterance.onboundary = (event) => {
+                if (event.name === 'word') {
+                    currentCharIndex = event.charIndex;
+                }
+            };
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+
+</html>

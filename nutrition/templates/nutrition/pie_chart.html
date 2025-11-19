@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pie Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #93e5e1, #eda4bb);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 80vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        h1 {
+            color: rgb(82, 68, 235);
+            font-size: 3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        #pie-chart {
+            width: 80vw;
+            height: 60vh; /* Adjust height to fit better in the view */
+            margin-top: 20px;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            z-index: 2;
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <a href="/nutrition/nutrients" class="home-button">Back</a>
+    <h1>Nutrient Composition</h1>
+    <div id="pie-chart"></div>
+    {{ pie_chart_html|safe }}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var labels = labels_json|safe ;
+            var values = values_json|safe ;
+
+            var data = [{
+                values: values,
+                labels: labels,
+                type: 'pie',
+                marker: {
+                    colors:  ['#008080', '#FF5733', '#33FF57', '#F5F5F5']
+                },
+                textinfo: 'label+percent',
+                insidetextorientation: 'radial'
+            }];
+
+            var layout = {
+                height: 600,  // Adjusted height for better fit
+                width: 600,  // Adjusted width for better fit
+                margin: { l: 20, r: 20, b: 20, t: 20 },
+                showlegend: true,
+                legend: {
+                    x: 1,
+                    xanchor: 'right',
+                    y: 0.5
+                }
+            };
+
+            Plotly.newPlot('pie-chart', data, layout);
+        });
+    </script>
+</body>
+</html>

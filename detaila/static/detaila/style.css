@@ -1,0 +1,87 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    min-height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background to ensure readability */
+}
+
+/* Nav bar styling */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #072860;
+}
+h1{
+    color: #260a5f;
+    font-size: 40px;
+}
+p, h2 {
+    color: #260a5f;
+    font-size: 20px;
+}
+
+/* Container for vitamins */
+.vitamins-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 65%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.vitamin-card {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 15px;
+    width: 250px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.vitamin-card img {
+        width: 200px; /* Set a fixed width */
+        height: 150px; /* Set a fixed height */
+        object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+        border-radius: 5px;
+}
+
+.vitamin-card:hover {
+    transform: scale(1.05);
+}
+
+.vitamin-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.vitamin-info {
+    font-size: 16px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.vitamin-card.show .vitamin-info {
+    opacity: 1;
+    transform: translateY(0);
+}

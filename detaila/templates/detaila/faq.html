@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="{% static 'detaila/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        .background {
+            background-image: url('{% static "detaila/images/faq6.jpg" %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 20px;
+            color: #333;
+        }
+
+        nav {
+            background-color: #333;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: -60px; /* Initially hide the navbar */
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: top 0.5s; /* Animation for sliding down */
+            display: flex;
+            justify-content: space-between; /* Distribute items horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        nav.show {
+            top: 0; /* Slide down to show the navbar */
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center items horizontally */
+            align-items: center; /* Center vertically */
+            flex-grow: 1; /* Expand to take remaining space */
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px; /* Adjusted the font size */
+            text-align: center;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 10px;
+        }
+
+        .navbar-title {
+            font-size: 40px;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto; /* Center the title */
+        }
+
+        .back-button {
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #555;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #777;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 100px auto 20px; /* Adjust margin to account for fixed navbar */
+            background-color: #B2FFFC;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            background-color: #e6ffff; /* Slightly lighter background for FAQ items */
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question.active + .faq-answer {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <nav>
+            <ul>
+                <li class="navbar-title">Frequently asked questions</li>
+            </ul>
+            <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+        </nav>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">What are the sources of Vitamin A?</div>
+                <div class="faq-answer">
+                    <p>Sources: Sweet potatoes, carrots, dark leafy greens.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What are the symptoms of Vitamin C deficiency?</div>
+                <div class="faq-answer">
+                    <p>Deficiencies may lead to scurvy, fatigue, weakness, bleeding gums, and impaired wound healing.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What are the best sources of Calcium?</div>
+                <div class="faq-answer">
+                    <p>Sources: Dairy products, leafy greens, nuts, seeds, and fortified plant-based milk.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is the recommended daily intake of calcium?</div>
+                <div class="faq-answer">
+                    <p>The recommended daily intake of calcium varies by age, but most adults need around 1,000 mg per day.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is the function of potassium in the body?</div>
+                <div class="faq-answer">
+                    <p>Potassium helps regulate fluid balance, blood pressure, and supports healthy heart function.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How much sodium should I consume daily?</div>
+                <div class="faq-answer">
+                    <p>The American Heart Association recommends consuming no more than 2,300 mg of sodium per day.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How can I increase my intake of omega-3 fatty acids?</div>
+                <div class="faq-answer">
+                    <p>Eat fatty fish like salmon, sardines, and mackerel, or take a fish oil supplement.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What are healthy fats?</div>
+                <div class="faq-answer">
+                    <p>Healthy fats include unsaturated fats found in nuts, seeds, avocados, and olive oil, which support heart health and provide energy.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How can I reduce my sugar intake?</div>
+                <div class="faq-answer">
+                    <p>Limit sugary drinks, read food labels, choose unsweetened products, and opt for natural sources like fruits and vegetables.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How much water should I drink daily?</div>
+                <div class="faq-answer">
+                    <p>Aim for at least 8 cups (64 ounces) of water per day, but individual needs may vary depending on age, sex, weight, and activity level.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is a balanced diet?</div>
+                <div class="faq-answer">
+                    <p>A balanced diet includes a variety of foods from all food groups in appropriate portions, providing essential nutrients for optimal health.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is the difference between saturated and unsaturated fats?</div>
+                <div class="faq-answer">
+                    <p>Saturated fats (found in animal products and processed meats) can increase cholesterol levels, while unsaturated fats (found in nuts, seeds, and avocados) can lower them.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is the recommended daily intake of fiber?</div>
+                <div class="faq-answer">
+                    <p>The daily recommended intake of fiber is 25-30 grams for adults, but most people consume only about 15 grams per day.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What are the benefits of a high-fiber diet?</div>
+                <div class="faq-answer">
+                    <p>A high-fiber diet can help with weight management, lower cholesterol levels, regulate blood sugar, and promote regular bowel movements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Slide down the navbar after the page loads
+            setTimeout(() => {
+                document.querySelector('nav').classList.add('show');
+            }, 100); // Delay to ensure the effect is visible
+
+            // Accordion functionality for FAQ
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    faqQuestions.forEach(q => {
+                        if (q !== question) {
+                            q.classList.remove('active');
+                        }
+                    });
+                    question.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'detaila/style.css' %}">
+    <script src="{% static 'detaila/script.js' %}" defer></script>
+    <style>
+        body {
+            background-image: url('{% static "detaila/images/image4.avif" %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .faq-button {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            /* Red background color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-button:hover {
+            background-color: #d32f2f;
+            /* Darker red on hover */
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .content {
+            padding-top: 60px;
+            /* Add padding to avoid overlap with navbar */
+        }
+
+        .vitamins-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 65%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .vitamin-card {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 15px;
+            width: 250px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .vitamin-card img {
+            width: 200px;
+            /* Set a fixed width */
+            height: 150px;
+            /* Set a fixed height */
+            object-fit: cover;
+            /* Ensures the image covers the area while maintaining aspect ratio */
+            border-radius: 5px;
+        }
+
+        .vitamin-title {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .vitamin-info {
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* Info Box Styles */
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f48fb1;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            z-index: 2;
+            font-size: 0.9em;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .navbar a:hover .tooltip {
+            display: block;
+        }
+
+        .content {
+            padding-top: 60px;
+            /* Add padding to avoid overlap with navbar */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/nutrition/nutrients">Nutrify
+            <div class="tooltip">Get nutrient values for desired food.</div>
+        </a>
+        <a href="/recommendations/recommendations">Recipe
+            <div class="tooltip">Find various recipes and cooking tips.</div>
+        </a>
+        <a href="/yoga/yoga1/">Exercise
+            <div class="tooltip">Get information on different exercises and routines.</div>
+        </a>
+        <a href="/faq">FAQ
+            <div class="tooltip">Frequently asked questions and answers.</div>
+        </a>
+    </div>
+    <div class="content">
+        <div class="background">
+            <h1>Welcome to FoodRecommendation</h1>
+            <p>Information on few vitamins and nutrients will go here.</p>
+            <div class="vitamins-container">
+                <div class="vitamin-card" data-info="Vitamin A: Essential for vision and immune function.">
+                    <img src="{% static 'detaila/images/vitA.jpeg' %}" alt="Vitamin A">
+                    <div class="vitamin-title">Vitamin A</div>
+                    <div class="vitamin-info">Vitamin A is also called "RETINOL".<br>
+                        <strong>Sources:</strong> Sweet potatoes, carrots, dark leafy greens, liver, eggs, dairy<br>
+                        <strong>Uses: </strong>Vision health, immune function, skin health, gene transcription<br>
+                        <strong>Deficiencies may lead to:</strong> Night blindness, dry skin, impaired immune function
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info="Vitamin C: Important for skin health and immune function.">
+                    <img src="{% static 'detaila/images/vitC.jpeg' %}" alt="Vitamin C">
+                    <div class="vitamin-title">Vitamin C</div>
+                    <div class="vitamin-info">Vitamin C is also called "Ascorbic acid"<br>
+                        <strong>Sources:</strong> Citrus fruits, strawberries, broccoli, and tomatoes<br>
+                        <strong>Uses: </strong>Boosts immune system, fights infections, supports collagen production,
+                        and antioxidant functions<br>
+                        <strong>Deficiencies may lead to:</strong> Scurvy, fatigue, weakness, bleeding gums, and
+                        impaired wound healing.
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info="Calcium: Necessary for bone health.">
+                    <img src="{% static 'detaila/images/calcium.jpeg' %}" alt="Calcium">
+                    <div class="vitamin-title">Calcium</div>
+                    <div class="vitamin-info">Also known as: Calci-D or Ca
+                        <strong>Sources:</strong> Dairy, leafy greens, nuts, seeds, fortified plant-based milk<br>
+                        <strong>Uses:</strong>Builds strong bones and teeth, supports muscle and nerve function<br>
+                        <strong>Deficiencies may lead to:</strong> Osteoporosis, osteopenia, rickets, muscle cramps,
+                        twitching, and weakness.
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info="Vitamin D: for bone strength.">
+                    <img src="{% static 'detaila/images/vitD.jpeg' %}" alt="Vitamin D">
+                    <div class="vitamin-title">Vitamin D</div>
+                    <div class="vitamin-info">Also known as: Cholecalciferol or D3</br>
+                        <strong>Sources:</strong> Sunlight exposure, fatty fish, fortified dairy, egg yolks<br>
+                        <strong>Uses:</strong> Regulates calcium levels, maintains strong bones, supports immune
+                        system<br>
+                        <strong>Deficiencies may lead to:</strong> Rickets, osteomalacia, increased risk of
+                        osteoporosis, depression, and certain cancers
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info="iron: for bone strength.">
+                    <img src="{% static 'detaila/images/iron.jpeg' %}" alt="iron">
+                    <div class="vitamin-title">Iron</div>
+                    <div class="vitamin-info">Also known as: Ferrous sulfate<br>
+                        <strong>Sources:</strong> Red meat, poultry, fish, beans, lentils, spinach, fortified
+                        cereals<br>
+                        <strong>Uses:</strong> Transports oxygen in blood, supports immune system, aids energy
+                        production<br>
+                        <strong>Deficiencies may lead to:</strong> Anemia, fatigue, weakness, pale skin, shortness of
+                        breath
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info=": for bone strength.">
+                    <img src="{% static 'detaila/images/vitK.jpeg' %}" alt="vitamin K">
+                    <div class="vitamin-title">Vitamin K</div>
+                    <div class="vitamin-info">Also known as: Phylloquinone or K1, Menaquinone or K2<br>
+                        <strong>Sources:</strong> Leafy greens, fermented foods, fatty fish, egg yolks, grass-fed
+                        beef<br>
+                        <strong>Uses:</strong> Blood clotting, bone health, cardiovascular health<br>
+                        <strong>Deficiencies may lead to:</strong> Bleeding disorders, osteoporosis, cardiovascular
+                        disease
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info=": for bone strength.">
+                    <img src="{% static 'detaila/images/vitB12.jpeg' %}" alt="vitamin B12">
+                    <div class="vitamin-title">Vitamin B12</div>
+                    <div class="vitamin-info">Also known as: Cobalamin<br>
+                        <strong>Sources:</strong>Animal products like meat, poultry, fish, eggs, dairy<br>
+                        <strong>Uses:</strong> Nervous system function, red blood cell formation, DNA synthesis<br>
+                        <strong>Deficiencies may lead to:</strong> Anemia, fatigue, weakness, numbness, tingling in hands and feet
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info=": for bone strength.">
+                    <img src="{% static 'detaila/images/vitE.jpeg' %}" alt="vitamin E">
+                    <div class="vitamin-title">Vitamin E</div>
+                    <div class="vitamin-info">Also known as:  Tocopherol<br>
+                        <strong>Sources:</strong>Nuts, seeds, vegetable oils, leafy greens, whole grains.<br>
+                        <strong>Uses:</strong> Antioxidant, protects cells from damage, supports skin and eye health<br>
+                        <strong>Deficiencies may lead to:</strong>Fatigue, weakness, vision problems, impaired immune function.
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info=": for bone strength.">
+                    <img src="{% static 'detaila/images/Mag.jpeg' %}" alt="vitamin E">
+                    <div class="vitamin-title">Magnesium</div>
+                    <div class="vitamin-info">Also known as:  Mg<br>
+                        <strong>Sources:</strong>Dark leafy greens, nuts, seeds, legumes, whole grains<br>
+                        <strong>Uses:</strong> Muscle and nerve function, heart rhythm, bone health, energy production<br>
+                        <strong>Deficiencies may lead to:</strong>Muscle cramps, fatigue, weakness, heart palpitations, osteoporosis
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info=": for bone strength.">
+                    <img src="{% static 'detaila/images/Mag.jpeg' %}" alt="Sodium">
+                    <div class="vitamin-title">Sodium</div>
+                    <div class="vitamin-info">Also known as: Na<br>
+                        <strong>Sources:</strong> Table salt, soy sauce, processed foods, vegetables, meat<br>
+                        <strong>Uses:</strong> Fluid balance, nerve function, muscle contractions, hydration<br>
+                        <strong>Deficiencies may lead to:</strong>Dehydration, muscle cramps, weakness, dizziness, headaches
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info=": for bone strength.">
+                    <img src="{% static 'detaila/images/pot.jpeg' %}" alt="Potassium">
+                    <div class="vitamin-title">Potassium</div>
+                    <div class="vitamin-info">Also known as: K<br>
+                        <strong>Sources:</strong> Bananas, avocados, spinach, sweet potatoes, legumes, nuts<br>
+                        <strong>Uses:</strong>  Heart function, blood pressure regulation, muscle contractions, nerve function<br>
+                        <strong>Deficiencies may lead to:</strong>Fatigue, weakness, muscle cramps, heart palpitations, constipation
+                    </div>
+                </div>
+                <div class="vitamin-card" data-info=": for bone strength.">
+                    <img src="{% static 'detaila/images/zinc.jpeg' %}" alt="Zinc">
+                    <div class="vitamin-title">Zinc</div>
+                    <div class="vitamin-info">Also known as: Zn<br>
+                        <strong>Sources:</strong> Oysters, beef, chicken, pork, beans, nuts, seeds<br>
+                        <strong>Uses:</strong> Immune system support, wound healing, protein synthesis, hormone regulation.<br>
+                        <strong>Deficiencies may lead to:</strong> Impaired growth, weakened immune system, slow wound healing, hair loss
+                    </div>
+                </div>
+                <!-- Add more vitamins and nutrients as needed -->
+            </div>
+        </div>
+    </div>
+    <div class="info-box" id="infoBox">
+        <p id="infoText"></p>
+    </div>
+    
+</body>
+
+</html>

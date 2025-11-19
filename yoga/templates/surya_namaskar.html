@@ -1,0 +1,385 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Surya Namaskar Steps</title>
+    <style>
+        /* Your CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f6c7c7 0%, #9edfe9 100%);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .step-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center items horizontally */
+            justify-content: center;
+            /* Center items vertically */
+            text-align: center;
+            /* Center text content */
+        
+        }
+
+        .step-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .step-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .audio-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .audio-button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+
+        step-image {
+            display: block;
+            margin: 0 auto;
+            /* Center the image horizontally */
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 999; /* Ensure it's above other content */
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/yoga/yoga1" class="back-to-home">Back </a>
+    <h1>Surya Namaskar Steps</h1>
+
+    <!-- Step 1 -->
+    <div class="step-card" id="step1">
+        <div class="step-number">Step 1</div>
+        <div class="step-title">Pranamasana (Prayer Pose)</div>
+        <img src="{% static 'images/sn1.jpg' %}" alt="Pranamasana" class="step-image">
+        <div class="step-description">
+            Stand at the edge of your mat, keep your feet together and balance your weight equally on both feet.
+            Expand your chest and relax your shoulders. As you breathe in, lift both arms up from the sides, and as
+            you exhale, bring your palms together in front of the chest in a prayer position.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 1: Pranamasana (Prayer Pose). Stand at the edge of your mat, keep your feet together and balance your weight equally on both feet. Expand your chest and relax your shoulders. As you breathe in, lift both arms up from the sides, and as you exhale, bring your palms together in front of the chest in a prayer position.')">Listen</button>
+            <button class="next-button" onclick="showNextStep(2)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card hidden" id="step2">
+        <div class="step-number">Step 2</div>
+        <div class="step-title">Hasta Uttanasana (Raised Arms Pose)</div>
+        <img src="{% static 'images/sn2.jpg' %}" alt="Hasta Uttanasana" class="step-image">
+        <div class="step-description">
+            As you inhale, lift the arms up and back, keeping the biceps close to the ears. In this pose, the
+            objective is to stretch the whole body up from the heels to the tips of the fingers.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 2: Hasta Uttanasana (Raised Arms Pose). As you inhale, lift the arms up and back, keeping the biceps close to the ears. In this pose, the objective is to stretch the whole body up from the heels to the tips of the fingers.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(1)">Previous</button>
+            <button class="next-button" onclick="showNextStep(3)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card hidden" id="step3">
+        <div class="step-number">Step 3</div>
+        <div class="step-title">Hasta Padasana (Hand to Foot Pose)</div>
+        <img src="{% static 'images/sn3.jpg' %}" alt="Hasta Padasana" class="step-image">
+        <div class="step-description">
+            Exhale and gradually bend forward, folding from your waist. Focus on bending the upper portion of your body
+            and keep your spine straight as you lower yourself toward the ground. Hasta Padasana helps balance the mind
+            and improves digestion.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 3: Hasta Padasana (Hand to Foot Pose). Exhale and gradually bend forward, folding from your waist. Focus on bending the upper portion of your body and keep your spine straight as you lower yourself toward the ground. Hasta Padasana helps balance the mind and improves digestion.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(2)">Previous</button>
+            <button class="next-button" onclick="showNextStep(4)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card hidden" id="step4">
+        <div class="step-number">Step 4</div>
+        <div class="step-title">Ashwa Sanchalanasana (Equestrian Pose)</div>
+        <img src="{% static 'images/sn4.jpg' %}" alt="Ashwa Sanchalanasana" class="step-image">
+        <div class="step-description">
+            Inhale deeply as you stretch your body parallel to the floor. Extend your arms along your sides and bring
+            your right knee towards the right side of your chest. Arch your back gently and look upward, simultaneously
+            extending your left leg behind you, developing confidence and willpower with the pose.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 4: Ashwa Sanchalanasana (Equestrian Pose). Inhale deeply as you stretch your body parallel to the floor. Extend your arms along your sides and bring your right knee towards the right side of your chest. Arch your back gently and look upward, simultaneously extending your left leg behind you, developing confidence and willpower with the pose.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(3)">Previous</button>
+            <button class="next-button" onclick="showNextStep(5)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-card hidden" id="step5">
+        <div class="step-number">Step 5</div>
+        <div class="step-title">Chaturanga Dandasana (Four-Limbed Staff Pose)</div>
+        <img src="{% static 'images/sn5.jpg' %}" alt="Chaturanga Dandasana" class="step-image">
+        <div class="step-description">
+            Sit with your legs together and stretched out in front of you. Place your hands next to your hips on the
+            floor. Flex your feet and extend out through the heels. Engage your thighs and actively press your sitting
+            bones down.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 5: Chaturanga Dandasana (Four-Limbed Staff Pose). Sit with your legs together and stretched out in front of you. Place your hands next to your hips on the floor. Flex your feet and extend out through the heels. Engage your thighs and actively press your sitting bones down.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(4)">Previous</button>
+            <button class="next-button" onclick="showNextStep(6)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step-card hidden" id="step6">
+        <div class="step-number">Step 6</div>
+        <div class="step-title">Ashtanga Namaskara (Eight-Limbed Pose)</div>
+        <img src="{% static 'images/sn6.jpg' %}" alt="Ashtanga Namaskara" class="step-image">
+        <div class="step-description">
+            Lower your knees to the floor. Exhale and bring your chest and chin to the floor, keeping your hips slightly
+            off the ground. Ensure your elbows are tucked in, and your toes, knees, chest, and chin touch the floor
+            together.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 6: Ashtanga Namaskara (Eight-Limbed Pose). Lower your knees to the floor. Exhale and bring your chest and chin to the floor, keeping your hips slightly off the ground. Ensure your elbows are tucked in, and your toes, knees, chest, and chin touch the floor together.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(5)">Previous</button>
+            <button class="next-button" onclick="showNextStep(7)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="step-card hidden" id="step7">
+        <div class="step-number">Step 7</div>
+        <div class="step-title">Bhujangasana (Cobra Pose)</div>
+        <img src="{% static 'images/sn7.jpg' %}" alt="Bhujangasana" class="step-image">
+        <div class="step-description">
+            Lower your hips and legs to the floor. Inhale and lift your chest off the floor, keeping your elbows bent
+            and close to your body. Look up gently and ensure your navel remains on the floor.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 7: Bhujangasana (Cobra Pose). Lower your hips and legs to the floor. Inhale and lift your chest off the floor, keeping your elbows bent and close to your body. Look up gently and ensure your navel remains on the floor.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(6)">Previous</button>
+            <button class="next-button" onclick="showNextStep(8)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="step-card hidden" id="step8">
+        <div class="step-number">Step 8</div>
+        <div class="step-title">Adho Mukha Svanasana (Downward-Facing Dog Pose)</div>
+        <img src="{% static 'images/sn8.jpg' %}" alt="Adho Mukha Svanasana" class="step-image">
+        <div class="step-description">
+            Lift your hips and straighten your knees, forming an inverted V-shape with your body. Ensure your palms are
+            pressed firmly into the ground, your head is between your arms, and your heels are touching the floor.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 8: Adho Mukha Svanasana (Downward-Facing Dog Pose). Lift your hips and straighten your knees, forming an inverted V-shape with your body. Ensure your palms are pressed firmly into the ground, your head is between your arms, and your heels are touching the floor.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(7)">Previous</button>
+            <button class="next-button" onclick="showNextStep(9)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 9 -->
+    <div class="step-card hidden" id="step9">
+        <div class="step-number">Step 9</div>
+        <div class="step-title">Ashwa Sanchalanasana (Equestrian Pose)</div>
+        <img src="{% static 'images/sn9.jpg' %}" alt="Ashwa Sanchalanasana" class="step-image">
+        <div class="step-description">
+            Bring your right foot forward between your hands and lower your left knee to the floor. Look up, arch your
+            back slightly, and bring your right knee towards your chest, similar to Step 4 but with the opposite leg.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 9: Ashwa Sanchalanasana (Equestrian Pose). Bring your right foot forward between your hands and lower your left knee to the floor. Look up, arch your back slightly, and bring your right knee towards your chest, similar to Step 4 but with the opposite leg.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(8)">Previous</button>
+            <button class="next-button" onclick="showNextStep(10)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 10 -->
+    <div class="step-card hidden" id="step10">
+        <div class="step-number">Step 10</div>
+        <div class="step-title">Hasta Padasana (Hand to Foot Pose)</div>
+        <img src="{% static 'images/s10.jpg' %}" alt="Hasta Padasana" class="step-image">
+        <div class="step-description">
+            Exhale and gradually bend forward, folding from your waist. Focus on bending the upper portion of your body
+            and keep your spine straight as you lower yourself toward the ground, similar to Step 3.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 10: Hasta Padasana (Hand to Foot Pose). Exhale and gradually bend forward, folding from your waist. Focus on bending the upper portion of your body and keep your spine straight as you lower yourself toward the ground, similar to Step 3.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(9)">Previous</button>
+            <button class="next-button" onclick="showNextStep(11)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 11 -->
+    <div class="step-card hidden" id="step11">
+        <div class="step-number">Step 11</div>
+        <div class="step-title">Hasta Uttanasana (Raised Arms Pose)</div>
+        <img src="{% static 'images/s11.jpg' %}" alt="Hasta Uttanasana" class="step-image">
+        <div class="step-description">
+            As you inhale, lift the arms up and back, keeping the biceps close to the ears. In this pose, the objective
+            is to stretch the whole body up from the heels to the tips of the fingers, similar to Step 2.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 11: Hasta Uttanasana (Raised Arms Pose). As you inhale, lift the arms up and back, keeping the biceps close to the ears. In this pose, the objective is to stretch the whole body up from the heels to the tips of the fingers, similar to Step 2.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(10)">Previous</button>
+            <button class="next-button" onclick="showNextStep(12)">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 12 -->
+    <div class="step-card hidden" id="step12">
+        <div class="step-number">Step 12</div>
+        <div class="step-title">Pranamasana (Prayer Pose)</div>
+        <img src="{% static 'images/s12.jpg' %}" alt="Pranamasana" class="step-image">
+        <div class="step-description">
+            Exhale and stand straight. Bring your arms down and keep your palms together in front of your chest, similar
+            to Step 1. This completes one set of Surya Namaskar.
+        </div>
+        <div class="button-container">
+            <button class="audio-button"
+                onclick="speakText('Step 12: Pranamasana (Prayer Pose). Exhale and stand straight. Bring your arms down and keep your palms together in front of your chest, similar to Step 1. This completes one set of Surya Namaskar.')">Listen</button>
+            <button class="previous-button" onclick="showPreviousStep(11)">Previous</button>
+        </div>
+    </div>
+
+    <script>
+        let voices = [];
+
+        // Load voices and populate the voices array
+        function loadVoices() {
+            voices = window.speechSynthesis.getVoices();
+        }
+
+        // Ensure voices are loaded
+        window.speechSynthesis.onvoiceschanged = function () {
+            loadVoices();
+        };
+
+        // Function to show the next step
+        function showNextStep(stepNumber) {
+            window.speechSynthesis.cancel();  // Stop the speech synthesis
+            document.querySelectorAll('.step-card').forEach(card => card.classList.add('hidden'));
+            document.getElementById('step' + stepNumber).classList.remove('hidden');
+        }
+
+        // Function to show the previous step
+        function showPreviousStep(stepNumber) {
+            window.speechSynthesis.cancel();  // Stop the speech synthesis
+            document.querySelectorAll('.step-card').forEach(card => card.classList.add('hidden'));
+            document.getElementById('step' + stepNumber).classList.remove('hidden');
+        }
+
+        // Function to speak text using speech synthesis with an Indian female voice
+        function speakText(text) {
+            var msg = new SpeechSynthesisUtterance(text);
+
+            // Filter voices to get an Indian female voice
+            var indianFemaleVoice = voices.find(voice => voice.lang === 'hi-IN' || (voice.name.includes('India') && voice.name.includes('Female')));
+
+            if (indianFemaleVoice) {
+                msg.voice = indianFemaleVoice;
+            } else {
+                console.log("Indian female voice not found, using default voice.");
+            }
+
+            window.speechSynthesis.speak(msg);
+        }
+
+        // Ensure voices are loaded initially
+        loadVoices();
+    </script>
+</body>
+
+</html>
